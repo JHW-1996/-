@@ -1,0 +1,77 @@
+
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <style type="text/css">
+  *{margin:0px;padding: 0px;list-style: none;border:0px;}
+  .content{width: 500px;height: 300px;position: absolute;top:0;left: 0;right: 0;bottom: 0px;margin: auto;background:rgba(111,111,111,0.7);
+    padding: 9% 12%;
+    box-sizing:border-box;
+  }
+  #btn,#login{width: 30px;height: 25px;background: #f0909f;color: #fff;margin:20px 0 0 20px;}
+span{color:#fff;}
+  
+  </style>
+  </head>
+  <body>
+
+  <div class="content">
+    <span>账号：<input type="text" id="user"></span><br/>
+    <span>密码：<input type="text" id="pass"></span><br />
+    <input type="checkbox" id="check" />自动登陆<br />
+    <button id="btn">注册</button>
+    <button id="login">登录</button>
+    
+  </div>
+
+
+
+
+   <script type="text/javascript" src='ajax.js'></script>
+      <script type="text/javascript">
+      btn.onclick = function(){
+        ajax({
+            url:'http://localhost:8005/resign',
+            type:'post',
+            data:{
+              user:user.value,
+              pass:pass.value
+            },
+            success:function(data){
+              alert(data)
+            }
+          })
+      
+      
+    }
+      login.onclick = function(){
+        ajax({
+          url:'http://localhost:8005/login',
+          type:'post',
+          data:{
+            user:user.value,
+            pass:pass.value,
+            cook:check.checked
+          },
+          success:function(data){
+            alert(data)
+          }
+        })
+      }
+      ajax({
+        url:'http://localhost:8005/cookielogin',
+        type:'get',
+        success:function(data){
+          //alert(data)
+          if(data == '登陆成功'){
+            window.location = '2.html'
+          }else{
+            alert(data)
+          }
+        }
+      })
+          
+      </script>
+  </body>
+</html>
